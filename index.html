@@ -7,29 +7,6 @@
     <meta charset="UTF-8">
     <title>Univeristy of Adelaide</title>
     <style>
-        .topbar {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            padding: 12px 0;
-        }
-        .topbar .nav {
-            display: flex;
-            gap: 10px;
-        }
-        .topbar .nav a {
-            background: rgba(255,255,255,0.04);
-            color: #ffffff;
-            padding: 8px 14px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-        }
-        .topbar .nav a:hover {
-            background: rgba(255,255,255,0.06);
-        }
         .discord-link {
             margin: 20px 0;
             font-size: 18px;
@@ -50,6 +27,52 @@
             margin: 0;
             background: #222;
             color: #fff;
+        }
+        .site-logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(0,0,0,0.5);
+            margin: 0 0 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 8px 14px;
+            border-radius: 16px;
+            background: #222;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            display: inline-block;
+        }
+        .discord-top-right {
+            position: fixed;
+            top: 14px;
+            right: 14px;
+            z-index: 999;
+            background: #5865F2;
+            border-radius: 12px;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+        }
+        .discord-top-right img {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+        }
+        .discord-top-right a {
+            display: inline-flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
         }
         .center-content {
             text-align: center;
@@ -84,11 +107,7 @@
         }
         .search-input::placeholder { color: rgba(255,255,255,0.55); }
         .search-count {
-            margin-left: 12px;
-            color: rgba(255,255,255,0.8);
-            align-self: center;
-            font-size: 14px;
-            white-space: nowrap;
+            display: none;
         }
         .no-results {
             margin-top: 18px;
@@ -157,17 +176,16 @@
 </style>
 </head>
 <body>
-    <h1>🐔 Chicken Kings Vault 🐔</h1>
-    <header class="topbar">
-        <nav class="nav" aria-label="Main navigation">
-            <a href="https://discord.gg/MYpMKuf3uQ" target="_blank">Discord</a>
-        </nav>
-    </header>
+    <div class="discord-top-right">
+        <a href="https://discord.gg/RgGKcZxq4T" target="_blank" rel="noopener noreferrer" aria-label="Join the Discord server">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="Discord logo" />
+        </a>
+    </div>
+    <h1 class="site-logo"><img class="logo-icon" src="favicon.png" alt="logo">Chicken Kings Vault<img class="logo-icon" src="favicon.png" alt="logo"></h1>
        <div class="center-content">
         <p>All games/ports are from GN-Math, TruffledUBG and Ultimate Game Stash!</p>
             <div class="search-container">
                 <input id="search-input" class="search-input" type="search" placeholder="Search games..." aria-label="Search games">
-                <span id="search-count" class="search-count" aria-live="polite"></span>
             </div>
         <div class="game-list">
             <a class="game-link" href="hollowknight.html">
@@ -3364,14 +3382,10 @@
             const gameList = document.querySelectorAll('.game-link');
             const noResults = document.getElementById('no-results');
             const total = gameList.length;
-            const countEl = document.getElementById('search-count');
-            // initialize placeholder and count
-            if(countEl){
-                countEl.textContent = `${total} games`;
-            }
+            // initialize placeholder with total games
             if(input){
-                input.placeholder = `Search (${total}) games...`;
-                input.setAttribute('aria-label', `Search games, ${total} total`);
+                input.placeholder = `Search ${total} Games...`;
+                input.setAttribute('aria-label', `Search ${total} Games...`);
             }
 
             function normalize(text){
@@ -3391,14 +3405,6 @@
                     }
                 });
                 noResults.style.display = visible === 0 ? 'block' : 'none';
-                // update visible count
-                if(countEl){
-                    if(visible === total){
-                        countEl.textContent = `${total} games`;
-                    } else {
-                        countEl.textContent = `${visible} / ${total} games`;
-                    }
-                }
             }
 
             input.addEventListener('input', filterGames);
