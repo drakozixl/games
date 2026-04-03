@@ -3275,6 +3275,10 @@ const games =`
     <img src="gameimages/bartbash.png" alt="Bart Bash Cover">
     <div>Bart Bash</div>
 </a>
+<a class="game-link" href="gamefiles/command&conquer.html">
+    <img src="gameimages/command&conquer.png" alt="Command & Conquer Cover">
+    <div>Command & Conquer</div>
+</a>
 <a class="game-link" href="gamefiles/mountainbikeracer.html">
     <img src="gameimages/mountainbikeracer.png" alt="Mountain Bike Racer Cover">
     <div>Mountain Bike Racer</div>
