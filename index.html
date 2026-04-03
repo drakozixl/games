@@ -243,7 +243,7 @@
     <div class="center-content">
         <p>might be a cool game or something</p>
         <div class="random">
-
+            <button class="redobutton" onclick="randomgame()">I don't like this game</button>
         </div>
         <p>All game credits go to gn-math, truffled.lol and Ultimate Game Stash</p>
         <div class="search-container">
@@ -270,6 +270,9 @@
             let thing = 1 + (array[0] % range);
             console.log(games[thing]);
             const newnode = games[thing].cloneNode(true)
+            if(document.querySelector('.game-rand') != null){
+                document.querySelector('.game-rand').remove()
+            }
             document.querySelector('.random').appendChild(newnode);
             newnode.classList.remove('game-link');
             newnode.classList.add("game-rand")
