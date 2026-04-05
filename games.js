@@ -3282,4 +3282,8 @@ const games =`
 <a class="game-link" href="gamefiles/mountainbikeracer.html">
     <img src="gameimages/mountainbikeracer.png" alt="Mountain Bike Racer Cover">
     <div>Mountain Bike Racer</div>
+</a>
+<a class="game-link" href="gamefiles/beatblock.html">
+    <img src="gameimages/beatblock.png" alt="Beat Block Cover">
+    <div>Beat Block</div>
 </a>`;
