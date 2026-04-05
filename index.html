@@ -84,6 +84,8 @@
             width: 100%;
             max-width: 1280px;
             padding: 0 16px;
+            transition: transform 0.1s ease-out;
+            transform-origin: 50% 2%;
         }
         .search-container {
             margin-top: 18px;
@@ -249,6 +251,7 @@
         <div class="search-container">
             <input id="search-input" class="search-input" type="search" placeholder="Search games..." aria-label="Search games">
         </div>
+        <button onclick="spinnywheel()">spinny</button>
         <div class="game-list">
         </div>
         <div id="no-results" class="no-results">No games match your search.</div>
@@ -256,6 +259,10 @@
     <!--leave this script block empty it's only here to load games.js-->
     <script src="games.js"></script>
     <script>
+        const gameList = document.querySelector('.game-list')
+        let spinny = false
+        let inbt = null
+        let number = 0;
         // adds all the games
         function a(){
             document.querySelector(".game-list").innerHTML = games;
@@ -268,7 +275,6 @@
             const array = new Uint32Array(1);
             window.crypto.getRandomValues(array);
             let thing = 1 + (array[0] % range);
-            console.log(games[thing]);
             const newnode = games[thing].cloneNode(true)
             if(document.querySelector('.game-rand') != null){
                 document.querySelector('.game-rand').remove()
@@ -278,19 +284,20 @@
             newnode.classList.add("game-rand")
         }
         randomgame()
+        function spinnywheel() {
+            if(!spinny){
+                spinny = true;
 
-        // document.addEventListener('mouseover', (e) => {
-        //     if (e.target.closest('.game-link')) {
-        //         e.target.closest('.game-link').style.backgroundColor = 'yellow';
-        //     }
-        // });
-
-        // document.addEventListener('mouseout', (e) => {
-        //     if (e.target.closest('.game-link')) {
-        //         e.target.closest('.game-link').style.backgroundColor = '';
-        //     }
-        // });
-
+                inbt = setInterval(() => {
+                    number++;
+                    gameList.style.transform = `rotate(${number}deg)`;
+                }, 20);
+            }else{
+                spinny = false;
+                clearInterval(inbt);
+                inbt = null;
+            }
+        }
     </script>
     <script>
         (function(){
