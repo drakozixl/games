@@ -3298,4 +3298,8 @@ const games =`
 <a class="game-link" href="gamefiles/helltakergame.html">
     <img src="gameimages/helltaker.png" alt="Helltaker Cover">
     <div>Helltaker</div>
+</a>
+<a class="game-link" href="gamefiles/geometrydash.html">
+    <img src="gameimages/geometrydash.png" alt="Geometry Dash Cover">
+    <div>Geometry Dash</div>
 </a>`;
